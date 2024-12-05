@@ -13,8 +13,8 @@
       }
       .board {
         display: grid;
-        grid-template-columns: repeat(10, 40px);
-        grid-template-rows: repeat(10, 40px);
+        grid-template-columns: repeat(15, 40px);
+        grid-template-rows: repeat(15, 40px);
         gap: 5px;
         justify-content: center;
       }
@@ -43,6 +43,7 @@
     <header>
       <h1>Chào mừng đến với Trang Web của Vui Xinh Đẹp</h1>
     </header>
+    
     <main>
       <p>Đây là một dự án start-up 250 tỷ của Vui</p>
       <button id="clickButton">
@@ -51,19 +52,22 @@
       <p id="message" style="display: none">
         Bạn không giàu được đâu, vì bạn không đủ đẹp. Ahihi đồ ngốk !!!
       </p>
+      <h1>Game Cờ Caro</h1>
+      <div class="board" id="board"></div>
+      <div class="message_caro" id="message_caro">
+      </div>
     </main>
 
-    <h1>Game Cờ Caro</h1>
-    <div class="board" id="board"></div>
-    <div class="message_caro" id="message_caro"></div>
+
 
     <footer>
-      <p>&copy; 2024 - Tôi sắp giàu</p>
+      <p>Vui Xinh Đẹp &copy; 2024 - All Right Reserved . </p>
     </footer>
 
     <script src="script.js"></script>
+
     <script>
-      const boardSize = 10; // Kích thước bàn cờ 10x10
+      const boardSize = 15; // Kích thước bàn cờ 10x10
       const board = document.getElementById("board");
       const message = document.getElementById("message_caro");
       let currentPlayer = "X"; // Người chơi bắt đầu là "X"
