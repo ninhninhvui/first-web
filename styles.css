@@ -41,28 +41,31 @@ footer {
 
 
 .board {
-display: grid;
-grid-template-columns: repeat(15, 40px);
-grid-template-rows: repeat(15, 40px);
-gap: 5px;
-justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(15, 40px);
+    grid-template-rows: repeat(15, 40px);
+    gap: 5px;
+    justify-content: center;
 }
+
 .cell {
-width: 40px;
-height: 40px;
-background-color: #f0f0f0;
-border: 1px solid #ccc;
-font-size: 24px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
+
 .cell.taken {
-cursor: not-allowed;
+    cursor: not-allowed;
 }
+
 .message_caro {
-margin-top: 20px;
-font-size: 20px;
-color: #333;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #333;
 }
