@@ -4,40 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vui Vui Xinh Đẹp</title>
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin-top: 50px;
-      }
-      .board {
-        display: grid;
-        grid-template-columns: repeat(15, 40px);
-        grid-template-rows: repeat(15, 40px);
-        gap: 5px;
-        justify-content: center;
-      }
-      .cell {
-        width: 40px;
-        height: 40px;
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        font-size: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-      .cell.taken {
-        cursor: not-allowed;
-      }
-      .message_caro {
-        margin-top: 20px;
-        font-size: 20px;
-        color: #333;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />    
   </head>
   <body>
     <header>
@@ -52,13 +19,12 @@
       <p id="message" style="display: none">
         Bạn không giàu được đâu, vì bạn không đủ đẹp. Ahihi đồ ngốk !!!
       </p>
+
       <h1>Game Cờ Caro</h1>
       <div class="board" id="board"></div>
       <div class="message_caro" id="message_caro">
       </div>
     </main>
-
-
 
     <footer>
       <p>Vui Xinh Đẹp &copy; 2024 - All Right Reserved . </p>
@@ -66,93 +32,5 @@
 
     <script src="script.js"></script>
 
-    <script>
-      const boardSize = 15; // Kích thước bàn cờ 10x10
-      const board = document.getElementById("board");
-      const message = document.getElementById("message_caro");
-      let currentPlayer = "X"; // Người chơi bắt đầu là "X"
-
-      // Tạo bàn cờ
-      function createBoard() {
-        for (let i = 0; i < boardSize * boardSize; i++) {
-          const cell = document.createElement("div");
-          cell.classList.add("cell");
-          cell.dataset.index = i;
-          cell.addEventListener("click", handleMove);
-          board.appendChild(cell);
-        }
-      }
-
-      // Xử lý khi người chơi nhấn vào ô
-      function handleMove(event) {
-        const cell = event.target;
-        if (cell.textContent !== "") {
-          return; // Ô đã được đánh
-        }
-
-        cell.textContent = currentPlayer; // Ghi ký hiệu "X" hoặc "O"
-        cell.classList.add("taken");
-
-        if (checkWin(cell.dataset.index)) {
-          message.textContent = `Người chơi ${currentPlayer} thắng!`;
-          board.removeEventListener("click", handleMove);
-          return;
-        }
-
-        // Chuyển lượt người chơi
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
-        message.textContent = `Lượt của người chơi: ${currentPlayer}`;
-      }
-
-      // Kiểm tra chiến thắng
-      function checkWin(index) {
-        const cells = Array.from(document.getElementsByClassName("cell"));
-        const row = Math.floor(index / boardSize);
-        const col = index % boardSize;
-
-        // Kiểm tra các hướng: ngang, dọc, chéo chính, chéo phụ
-        return (
-          checkDirection(cells, row, col, 0, 1) || // Ngang
-          checkDirection(cells, row, col, 1, 0) || // Dọc
-          checkDirection(cells, row, col, 1, 1) || // Chéo chính
-          checkDirection(cells, row, col, 1, -1) // Chéo phụ
-        );
-      }
-
-      // Hàm kiểm tra hướng
-      function checkDirection(cells, row, col, rowDir, colDir) {
-        let count = 1; // Đếm số quân liên tiếp
-
-        // Kiểm tra về phía trước
-        for (let i = 1; i < 5; i++) {
-          const r = row + i * rowDir;
-          const c = col + i * colDir;
-          if (r < 0 || r >= boardSize || c < 0 || c >= boardSize) break;
-          if (cells[r * boardSize + c].textContent === currentPlayer) {
-            count++;
-          } else {
-            break;
-          }
-        }
-
-        // Kiểm tra về phía sau
-        for (let i = 1; i < 5; i++) {
-          const r = row - i * rowDir;
-          const c = col - i * colDir;
-          if (r < 0 || r >= boardSize || c < 0 || c >= boardSize) break;
-          if (cells[r * boardSize + c].textContent === currentPlayer) {
-            count++;
-          } else {
-            break;
-          }
-        }
-
-        return count >= 5; // Thắng nếu có 5 quân liên tiếp
-      }
-
-      // Khởi tạo game
-      createBoard();
-      message.textContent = `Lượt của người chơi: ${currentPlayer}`;
-    </script>
   </body>
 </html>
